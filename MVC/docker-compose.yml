@@ -1,0 +1,62 @@
+version: '3.7'
+
+services:
+  gentoo-web:
+    container_name: gentoo-web
+    build:
+      context: ./docker/nginx
+      args:
+        user: gentoo
+        UID: 501
+    ports:
+      - 350:80
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - gentoo-be
+      - gentoo-db
+    networks:
+      - gentoo-network
+
+  gentoo-be:
+    container_name: gentoo-be
+    build:
+      context: ./docker/php
+      args:
+        user: gentoo
+        UID: 501
+    environment:
+      PHP_IDE_CONFIG: serverName=Docker
+      PHP_XDEBUG_ENABLED: 1
+      XDEBUG_CONFIG: remote_host=host.docker.internal remote_port=9003
+    volumes:
+      - ./:/var/www
+      - ./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - ~/.ssh/id_rsa:/home/appuser/.ssh/gentoo
+    networks:
+      - gentoo-network
+    depends_on:
+      - gentoo-db
+
+  gentoo-db:
+    container_name: gentoo-db
+    image: mariadb:latest
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_PASSWORD=123123
+      - MYSQL_USER=user
+      - MYSQL_DATABASE=GentooDb
+    volumes:
+      - gentoo-db-data:/var/lib/mysql
+      - ./docker/mariadb/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - gentoo-network
+
+networks:
+  gentoo-network:
+    external: false
+
+volumes:
+  gentoo-db-data:
