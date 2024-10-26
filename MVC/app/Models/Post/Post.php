@@ -23,7 +23,7 @@ class Post extends Model
             if ($key === 'id') {
                 $query->where($key, '=', $value);
             } else {
-                $query->where($key, $value);
+                $query->where($key, 'like', '%' . $value . '%');
             }
         }
     }

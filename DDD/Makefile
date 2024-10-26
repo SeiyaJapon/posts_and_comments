@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOCKER_BE = litemp-be
+DOCKER_BE = gentoo-be
 OS := $(shell uname)
 
 ifeq ($(OS),Darwin)
@@ -26,7 +26,7 @@ up: ## Start the docker environment
 	U_ID=${UID} docker-compose up -d --remove-orphans
 
 run: ## Start the containers
-	docker network create litemp-network || true
+	docker network create gentoo-network || true
 	U_ID=${UID} docker-compose up -d
 
 stop: ## Stop the containers
@@ -42,7 +42,7 @@ prepare: ## Runs backend commands
 	$(MAKE) composer-install
 
 create-network:
-	docker network create litemp-network || true
+	docker network create gentoo-network || true
 
 down: ## composer down
 	docker compose down --remove-orphans
@@ -91,3 +91,6 @@ logs: ## Tails the Symfony dev log
 
 enter: ## ssh's into the be container
 	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} bash
+
+tests: ## Run the tests
+	docker compose exec $(DOCKER_BE) php artisan test

@@ -45,6 +45,7 @@ class PostController extends Controller
     public function show(int $id): JsonResponse
     {
         $post = $this->getPostByIdUsecase->execute($id);
+
         if (!$post) {
             return response()->json(['error' => 'Post not found'], 404);
         }
