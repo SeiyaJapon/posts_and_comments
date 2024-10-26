@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Repositories\CommentRepository;
-use App\Repositories\CommentRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

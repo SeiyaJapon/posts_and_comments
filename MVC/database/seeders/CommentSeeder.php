@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Comment\Comment;
+use App\Models\Post\Post;
 use Illuminate\Database\Seeder;
-use App\Models\Comment;
-use App\Models\Post;
 
 class CommentSeeder extends Seeder
 {

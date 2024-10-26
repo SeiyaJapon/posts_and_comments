@@ -1,9 +1,9 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Comment;
 
-use App\Models\Comment;
-use App\Models\Post;
+use App\Models\Comment\Comment;
+use App\Models\Post\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CommentFactory extends Factory

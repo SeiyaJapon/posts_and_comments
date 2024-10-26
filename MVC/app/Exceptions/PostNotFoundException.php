@@ -8,8 +8,8 @@ class PostNotFoundException extends \Exception
 {
     protected $message = "The post with ID %s does not exist.";
 
-    public function __construct(string $id)
+    public function __construct(int $id)
     {
-        parent::__construct(sprintf($this->message), $id);
+        parent::__construct(sprintf($this->message, $id));
     }
 }
