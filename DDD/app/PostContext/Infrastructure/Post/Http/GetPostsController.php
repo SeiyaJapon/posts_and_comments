@@ -2,13 +2,12 @@
 
 declare (strict_types=1);
 
-namespace App\PostContext\Infrastructure\Http\Post;
+namespace App\PostContext\Infrastructure\Post\Http;
 
 use App\PostContext\Application\Post\Query\GetPosts\GetPostsQuery;
 use App\ShareContext\Infrastructure\QueryBus\QueryBusInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class GetPostsController
 {

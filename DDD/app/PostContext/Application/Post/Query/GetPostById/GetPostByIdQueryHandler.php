@@ -6,6 +6,7 @@ namespace App\PostContext\Application\Post\Query\GetPostById;
 
 use App\PostContext\Domain\Post\PostId;
 use App\PostContext\Domain\Post\PostRepositoryInterface;
+use Illuminate\Http\Response;
 
 class GetPostByIdQueryHandler
 {
@@ -21,6 +22,10 @@ class GetPostByIdQueryHandler
         $post = $this->postRepository->getPostById(
             new PostId($query->id())
         );
+
+        if (empty($post)) {
+            throw new \Exception('Post not found', Response::HTTP_NOT_FOUND);
+        }
 
         return new GetPostByIdQueryResult($post->toArray());
     }

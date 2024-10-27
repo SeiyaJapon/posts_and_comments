@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\PostContext\Domain\Post\PostRepositoryInterface;
-use App\PostContext\Infrastructure\Persistence\Repository\EloquentPostRepository;
+use App\PostContext\Infrastructure\Post\Persistence\Repository\EloquentPostRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

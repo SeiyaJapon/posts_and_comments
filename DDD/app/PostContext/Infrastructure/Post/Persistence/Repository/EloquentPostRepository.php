@@ -2,7 +2,7 @@
 
 declare (strict_types=1);
 
-namespace App\PostContext\Infrastructure\Persistence\Repository;
+namespace App\PostContext\Infrastructure\Post\Persistence\Repository;
 
 use App\Models\Post\Post;
 use App\PostContext\Domain\Post\PostId;
@@ -15,7 +15,7 @@ class EloquentPostRepository implements PostRepositoryInterface
     {
         $cacheKey = 'posts_' . md5(json_encode($filters) . $page . $limit . $sort . $direction . $commentFilter);
 
-        return Cache::remember($cacheKey, now()->addMinutes(10), function () use ($filters, $page, $limit, $sort, $direction, $commentFilter) {
+        return Cache::remember($cacheKey, now()->addSeconds(10), function () use ($filters, $page, $limit, $sort, $direction, $commentFilter) {
             $query = Post::query()
                          ->filter($filters)
                          ->withCommentFilter($commentFilter);
@@ -37,7 +37,7 @@ class EloquentPostRepository implements PostRepositoryInterface
         $id = $id->value();
         $cacheKey = 'post_' . $id;
 
-        return Cache::remember($cacheKey, now()->addMinutes(10), function () use ($id) {
+        return Cache::remember($cacheKey, now()->addSeconds(10), function () use ($id) {
             return Post::with('comments')->find($id);
         });
     }

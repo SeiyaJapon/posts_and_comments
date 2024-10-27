@@ -2,12 +2,13 @@
 
 declare (strict_types=1);
 
-namespace App\PostContext\Infrastructure\Http\Post;
+namespace App\PostContext\Infrastructure\Post\Http;
 
 use App\PostContext\Application\Post\Query\GetPostById\GetPostByIdQuery;
 use App\ShareContext\Infrastructure\QueryBus\QueryBusInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class GetPostByIdController
 {
@@ -20,8 +21,12 @@ class GetPostByIdController
 
     public function __invoke(string $id, Request $request): JsonResponse
     {
-        $post = $this->queryBus->ask(new GetPostByIdQuery($id));
+        try {
+            $post = $this->queryBus->ask(new GetPostByIdQuery($id));
 
-        return response()->json($post->result());
+            return response()->json($post->result());
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], Response::HTTP_NOT_FOUND);
+        }
     }
 }

@@ -1,4 +1,7 @@
 /MVC/vendor
 /MVC/node_modules
+/MVC/.idea
 /DDD/vendor
 /DDD/node_modules
+/DDD/.idea
+/.idea/

@@ -2,12 +2,12 @@
 
 declare (strict_types=1);
 
-namespace App\PostContext\Application\Post\Query\DeletePostById;
+namespace App\PostContext\Application\Post\Command\DeletePostById;
 
 use App\PostContext\Domain\Post\PostId;
 use App\PostContext\Domain\Post\PostRepositoryInterface;
 
-class DeletePostByIdQueryHandler
+class DeletePostByIdCommandHandler
 {
     private PostRepositoryInterface $postRepository;
 
@@ -16,10 +16,8 @@ class DeletePostByIdQueryHandler
         $this->postRepository = $postRepository;
     }
 
-    public function handle(DeletePostByIdQuery $query): DeletePostByIdQueryResult
+    public function handle(DeletePostByIdCommand $query): void
     {
-        return new DeletePostByIdQueryResult(
-            $this->postRepository->deletePost(new PostId($query->postId()))
-        );
+        $this->postRepository->deletePost(new PostId($query->postId()));
     }
 }

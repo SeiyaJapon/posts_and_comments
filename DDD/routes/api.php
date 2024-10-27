@@ -1,8 +1,8 @@
 <?php
 
-use App\PostContext\Infrastructure\Http\Post\DeletePostByIdController;
-use App\PostContext\Infrastructure\Http\Post\GetPostByIdController;
-use App\PostContext\Infrastructure\Http\Post\GetPostsController;
+use App\PostContext\Infrastructure\Post\Http\DeletePostByIdController;
+use App\PostContext\Infrastructure\Post\Http\GetPostByIdController;
+use App\PostContext\Infrastructure\Post\Http\GetPostsController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('posts')->group(function () {
