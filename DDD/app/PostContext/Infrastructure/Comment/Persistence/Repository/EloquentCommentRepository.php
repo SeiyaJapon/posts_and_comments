@@ -79,7 +79,7 @@ class EloquentCommentRepository implements CommentRepositoryInterface
         $comment = Comment::find($id);
 
         if (!$comment) {
-            return false;
+            throw new \Exception('Comment not found', 404);
         }
 
         return $comment->delete();

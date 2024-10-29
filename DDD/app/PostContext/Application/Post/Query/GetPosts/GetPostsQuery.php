@@ -14,6 +14,7 @@ class GetPostsQuery implements QueryInterface
     public string $sort;
     public string $direction;
     public ?string $commentFilter;
+    private ?string $with;
 
     public function __construct(
         array $filters = [],

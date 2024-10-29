@@ -29,6 +29,6 @@ class GetCommentsController
 
         $result = $this->queryBus->ask(new GetCommentsQuery($filters, intval($page), intval($limit), $sort, $direction, $with));
 
-        return response()->json($result->result());
+        return new JsonResponse($result->result(), 200);
     }
 }

@@ -24,7 +24,7 @@ class GetCommentByIdController
             new GetCommentByIdQuery($id, $request->get('with'))
         );
 
-        return response()->json(
+        return new JsonResponse(
             ['result' => $result->result(), 'count' => 1]
         );
     }

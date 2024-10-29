@@ -65,19 +65,19 @@ class EloquentPostRepository implements PostRepositoryInterface
 
         if ($post) {
             $post->comments()->delete();
-            $deleted = $post->delete();
+            $post->delete();
 
             Cache::forget('post_' . $id);
             Cache::forget('posts');
 
-            return $deleted;
+            return true;
         }
 
-        return false;
+        throw new \Exception('Post not found');
     }
 
     public function existsById(PostId $id): bool
     {
-        return $this->getPostById($id) !== null;
+        return !empty(Post::find($id->value()));
     }
 }

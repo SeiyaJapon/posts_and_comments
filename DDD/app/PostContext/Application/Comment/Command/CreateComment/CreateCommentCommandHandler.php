@@ -4,7 +4,6 @@ declare (strict_types=1);
 
 namespace App\PostContext\Application\Comment\Command\CreateComment;
 
-use App\PostContext\Domain\Comment\Comment;
 use App\PostContext\Domain\Comment\CommentId;
 use App\PostContext\Domain\Comment\CommentRepositoryInterface;
 use App\PostContext\Domain\Comment\Content;

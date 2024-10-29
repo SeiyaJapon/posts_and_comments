@@ -32,6 +32,6 @@ class GetPostsController
 
         $result = $this->queryBus->ask(new GetPostsQuery($filters, intval($page), intval($limit), $sort, $direction, $commentFilter, $with));
 
-        return response()->json($result->result());
+        return new JsonResponse($result->result());
     }
 }

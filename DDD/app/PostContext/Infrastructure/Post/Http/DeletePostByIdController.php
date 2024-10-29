@@ -19,10 +19,12 @@ class DeletePostByIdController
 
     public function __invoke(string $id): JsonResponse
     {
-        $success = $this->deletePostService->execute($id);
+        try {
+            $this->deletePostService->execute($id);
 
-        return $success ?
-            response()->json(['success' => $success]) :
-            response()->json(['error' => 'Post not found'], Response::HTTP_NOT_FOUND);
+            return new JsonResponse(true, Response::HTTP_OK);
+        } catch (\Throwable $e) {
+            return new JsonResponse(['error' => $e->getMessage()], Response::HTTP_NOT_FOUND);
+        }
     }
 }

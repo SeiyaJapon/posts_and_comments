@@ -23,9 +23,9 @@ class DeleteCommentByIdController
         try {
             $this->commandBus->handle(new DeleteCommentByIdCommand($commentId));
 
-            return response()->json(true, Response::HTTP_OK);
+            return new JsonResponse(true, Response::HTTP_OK);
         } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+            return new JsonResponse(['error' => $e->getMessage()], $e->getCode());
         }
     }
 }

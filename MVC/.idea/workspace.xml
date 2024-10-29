@@ -4,7 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fc08775e-ff6f-472b-9219-4ab8793d3141" name="Changes" comment="php cs fixer and stan DDD" />
+    <list default="true" id="fc08775e-ff6f-472b-9219-4ab8793d3141" name="Changes" comment="php cs fixer and stan DDD">
+      <change beforePath="$PROJECT_DIR$/../DDD/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DDD/.idea/DDD.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../DDD/.idea/DDD.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DDD/.idea/backend_technical_assesment.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DDD/.idea/codeception.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DDD/.idea/commandlinetools/Laravel_9_24_24__12_38_PM.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DDD/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DDD/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DDD/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DDD/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DDD/.idea/phpspec.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DDD/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DDD/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DDD/app/PostContext/Application/Comment/Query/GetCommentByAbbreviation/GetCommentByAbbreviationQueryHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/../DDD/app/PostContext/Application/Comment/Query/GetCommentByAbbreviation/GetCommentByAbbreviationQueryHandler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Comment/CommentRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Comment/CommentRepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Post/PostRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Post/PostRepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/CommentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/CommentRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/PostRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/PostRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Usecases/Comment/CreateCommentUsecase.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Usecases/Comment/CreateCommentUsecase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Usecases/Comment/GetCommentByIdUsecase.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Usecases/Comment/GetCommentByIdUsecase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Usecases/Comment/GetCommentsUsecase.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Usecases/Comment/GetCommentsUsecase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Usecases/Post/GetPostsUsecase.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Usecases/Post/GetPostsUsecase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/Http/Controllers/CommentControllerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Http/Controllers/CommentControllerTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/Http/Controllers/PostControllerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Http/Controllers/PostControllerTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/Usecases/Comment/CreateCommentUsecaseTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Usecases/Comment/CreateCommentUsecaseTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/Usecases/Comment/GetCommentByIdUsecaseTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Usecases/Comment/GetCommentByIdUsecaseTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/Usecases/Comment/GetCommentsUsecaseTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Usecases/Comment/GetCommentsUsecaseTest.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,7 +61,7 @@
       </server>
     </servers>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="litemp-be">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="gentoo-be">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-uuid" />
@@ -154,6 +183,30 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "PHPUnit.Comment.executor": "Run",
+    "PHPUnit.CommentControllerTest.executor": "Run",
+    "PHPUnit.CommentControllerTest.testShowCommentExists.executor": "Run",
+    "PHPUnit.CommentControllerTest.testStore.executor": "Run",
+    "PHPUnit.CommentRepositoryTest.executor": "Run",
+    "PHPUnit.Controllers.executor": "Run",
+    "PHPUnit.CreateCommentUsecaseTest.executor": "Run",
+    "PHPUnit.CreateCommentUsecaseTest.testExecuteSuccess.executor": "Run",
+    "PHPUnit.DeleteCommentUsecaseTest.executor": "Run",
+    "PHPUnit.DeletePostUsecaseTest.executor": "Run",
+    "PHPUnit.DeletePostUsecaseTest.testExecute.executor": "Run",
+    "PHPUnit.GetCommentByIdUsecaseTest.executor": "Run",
+    "PHPUnit.GetCommentByIdUsecaseTest.testExecuteCommentNotFound.executor": "Run",
+    "PHPUnit.GetCommentByIdUsecaseTest.testExecuteSuccess.executor": "Run",
+    "PHPUnit.GetCommentByIdUsecaseTest.testExecuteWithRelations.executor": "Run",
+    "PHPUnit.GetCommentsUsecaseTest.executor": "Run",
+    "PHPUnit.GetPostByIdUsecaseTest.executor": "Run",
+    "PHPUnit.GetPostsUsecaseTest.executor": "Run",
+    "PHPUnit.Http.executor": "Run",
+    "PHPUnit.Post.executor": "Run",
+    "PHPUnit.PostControllerTest.executor": "Run",
+    "PHPUnit.PostRepositoryTest.executor": "Run",
+    "PHPUnit.Usecases.executor": "Run",
+    "PHPUnit.tests.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "com.jetbrains.php.phpunit.codeGeneration.PhpNewTestDialog.defaultLibrary": "PHPUnit",
     "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpCreateRemoteSdkForm": "Docker Compose",
@@ -175,15 +228,45 @@
       <recent name="$PROJECT_DIR$/app/HotelsContext/Infrastructure/Hotel" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/Unit/Http" />
       <recent name="$PROJECT_DIR$/app/Traits" />
       <recent name="$PROJECT_DIR$/docker" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHPUnit.tests">
+    <configuration name="GetCommentsUsecaseTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\Usecases\Comment\GetCommentsUsecaseTest" configuration_file="/var/www/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/Usecases/Comment/GetCommentsUsecaseTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Http" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner configuration_file="/var/www/phpunit.xml" directory="$PROJECT_DIR$/tests/Unit/Http" />
+      <method v="2" />
+    </configuration>
     <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
+    <configuration name="Post" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner configuration_file="/var/www/phpunit.xml" directory="$PROJECT_DIR$/tests/Unit/Usecases/Post" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Usecases" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner configuration_file="/var/www/phpunit.xml" directory="$PROJECT_DIR$/tests/Unit/Usecases" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tests" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner configuration_file="/var/www/phpunit.xml" directory="$PROJECT_DIR$/tests" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHPUnit.tests" />
+        <item itemvalue="PHPUnit.Usecases" />
+        <item itemvalue="PHPUnit.Http" />
+        <item itemvalue="PHPUnit.Post" />
+        <item itemvalue="PHPUnit.GetCommentsUsecaseTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -207,7 +290,12 @@
       <workItem from="1729794405190" duration="4332000" />
       <workItem from="1729835325492" duration="119000" />
       <workItem from="1729849786659" duration="2136000" />
-      <workItem from="1729852519253" duration="16507000" />
+      <workItem from="1729852519253" duration="17351000" />
+      <workItem from="1729940335497" duration="12664000" />
+      <workItem from="1729964891273" duration="1052000" />
+      <workItem from="1730066014792" duration="2410000" />
+      <workItem from="1730132942704" duration="3602000" />
+      <workItem from="1730212331203" duration="7219000" />
     </task>
     <task id="LOCAL-00001" summary="WIP">
       <option name="closed" value="true" />
@@ -249,7 +337,23 @@
       <option name="project" value="LOCAL" />
       <updated>1727366725910</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="MVC">
+      <option name="closed" value="true" />
+      <created>1729955569744</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1729955569744</updated>
+    </task>
+    <task id="LOCAL-00007" summary="DDD">
+      <option name="closed" value="true" />
+      <created>1730066063682</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1730066063682</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,8 +362,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="WIP" />
     <MESSAGE value="tests DDD" />
+    <MESSAGE value="MVC" />
     <MESSAGE value="php cs fixer and stan DDD" />
-    <option name="LAST_COMMIT_MESSAGE" value="php cs fixer and stan DDD" />
+    <MESSAGE value="DDD" />
+    <option name="LAST_COMMIT_MESSAGE" value="DDD" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -268,6 +374,31 @@
           <url>file://$PROJECT_DIR$/app/HotelsContext/Infrastructure/Hotel/Persistence/Repositories/EloquentHotelRepository.php</url>
           <line>67</line>
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/PostController.php</url>
+          <line>30</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/PostController.php</url>
+          <line>47</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/CommentController.php</url>
+          <line>19</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/CommentController.php</url>
+          <line>34</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Repositories/PostRepository.php</url>
+          <line>17</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

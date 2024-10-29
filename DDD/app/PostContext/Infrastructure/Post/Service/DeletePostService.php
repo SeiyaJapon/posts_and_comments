@@ -5,7 +5,6 @@ declare (strict_types=1);
 namespace App\PostContext\Infrastructure\Post\Service;
 
 use App\PostContext\Application\Post\Command\DeletePostById\DeletePostByIdCommand;
-use App\PostContext\Application\Post\Query\PostExists\PostExistsQuery;
 use App\ShareContext\Infrastructure\CommandBus\CommandBusInterface;
 use App\ShareContext\Infrastructure\QueryBus\QueryBusInterface;
 
@@ -20,16 +19,8 @@ class DeletePostService
         $this->queryBus = $queryBus;
     }
 
-    public function execute(string $id): bool
+    public function execute(string $id): void
     {
-        try {
-            $this->commandBus->handle(new DeletePostByIdCommand($id));
-
-            $exists = $this->queryBus->ask(new PostExistsQuery($id));
-
-            return !$exists->result()['exists'];
-        } catch (\Exception $e) {
-            throw new \Exception($e->getMessage());
-        }
+        $this->commandBus->handle(new DeletePostByIdCommand($id));
     }
 }

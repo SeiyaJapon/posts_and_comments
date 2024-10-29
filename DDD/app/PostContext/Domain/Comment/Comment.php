@@ -5,7 +5,6 @@ declare (strict_types=1);
 namespace App\PostContext\Domain\Comment;
 
 use App\PostContext\Domain\Post\PostId;
-use DateTimeImmutable;
 
 class Comment
 {
