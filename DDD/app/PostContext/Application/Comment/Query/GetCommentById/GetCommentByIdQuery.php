@@ -9,14 +9,21 @@ use App\ShareContext\Application\Query\QueryInterface;
 class GetCommentByIdQuery implements QueryInterface
 {
     private string $id;
+    private ?string $with;
 
-    public function __construct(string $id)
+    public function __construct(string $id, ?string $with = null)
     {
         $this->id = $id;
+        $this->with = $with;
     }
 
-    public function id(): string
+    public function getId(): string
     {
         return $this->id;
+    }
+
+    public function getWith(): ?string
+    {
+        return $this->with;
     }
 }

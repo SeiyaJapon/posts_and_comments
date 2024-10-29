@@ -15,13 +15,16 @@ class EloquentPostRepository implements PostRepositoryInterface
     {
         $cacheKey = 'posts_' . md5(json_encode($filters) . $page . $limit . $sort . $direction . $commentFilter);
 
-        return Cache::remember($cacheKey, now()->addSeconds(10), function () use ($filters, $page, $limit, $sort, $direction, $commentFilter) {
+        return Cache::remember($cacheKey, now()->addSeconds(10), function () use ($filters, $page, $limit, $sort, $direction, $commentFilter, $with) {
             $query = Post::query()
                          ->filter($filters)
                          ->withCommentFilter($commentFilter);
 
             if (!empty($with)) {
-                $query->with($with);
+                $query->withCount('comments')
+                    ->with([$with => function ($query) {
+                    $query->limit(10);
+                }]);
             }
 
             $count = $query->count();
@@ -36,15 +39,22 @@ class EloquentPostRepository implements PostRepositoryInterface
         });
     }
 
-    public function getPostById(PostId $id): ?Post
+    public function getPostById(PostId $id, ?string $with = null): ?Post
     {
         $id = $id->value();
         $cacheKey = 'post_' . $id . '_comments_100_page_' . request('page', 1);
 
-        return Cache::remember($cacheKey, now()->addSeconds(10), function () use ($id) {
-            return Post::with(['comments' => function ($query) {
-                $query->limit(100);
-            }])->find($id);
+        return Cache::remember($cacheKey, now()->addSeconds(10), function () use ($id, $with) {
+            $query = Post::query();
+
+            if (!empty($with)) {
+                $query->withCount('comments')
+                    ->with([$with => function ($query) {
+                    $query->limit(10);
+                }]);
+            }
+
+            return $query->find($id);
         });
     }
 

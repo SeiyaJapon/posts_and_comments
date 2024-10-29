@@ -22,7 +22,7 @@ class GetPostByIdController
     public function __invoke(string $id, Request $request): JsonResponse
     {
         try {
-            $post = $this->queryBus->ask(new GetPostByIdQuery($id));
+            $post = $this->queryBus->ask(new GetPostByIdQuery($id, $request->get('with')));
 
             return response()->json(['result' => $post->result(), 'count' => 1]);
         } catch (\Exception $e) {

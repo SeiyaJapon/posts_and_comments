@@ -13,37 +13,46 @@ use Illuminate\Support\Facades\Cache;
 
 class EloquentCommentRepository implements CommentRepositoryInterface
 {
-    public function getComments(array $filters, int $page, int $limit, string $sort, string $direction, array $with): array
+    public function getComments(array $filters, int $page, int $limit, string $sort, string $direction, ?string $with): array
     {
         $cacheKey = 'comments_' . md5(json_encode($filters) . json_encode($with));
 
-        return Cache::remember($cacheKey, now()->addMinutes(10), function () use ($filters, $with, $page, $limit, $sort, $direction) {
+        return Cache::remember($cacheKey, now()->addSeconds(10), function () use ($filters, $with, $page, $limit, $sort, $direction) {
             $query = Comment::query()
-                            ->filter($filters)
-                            ->orderBy($sort, $direction)
-                            ->paginate($limit, ['*'], 'page', $page);
+                            ->filter($filters);
 
             if (!empty($with)) {
-                $query->load($with);
+                $query->with([$with => function ($query) {
+                    $query->limit(10);
+                }]);
             }
 
+            $count = $query->count();
+
+            $comments = $query->orderBy($sort, $direction)
+                ->paginate($limit, ['*'], 'page', $page)
+                ->items();
+
             return [
-                'result' => $query->items(),
-                'count' => $query->total()
+                'result' => $comments,
+                'count' => $count
             ];
         });
     }
 
-    public function getCommentById(CommentId $id, array $with = []): ?Comment
+    public function getCommentById(CommentId $id, ?string $with = null): ?Comment
     {
         $id = $id->value();
         $cacheKey = 'comment_' . $id . '_' . md5(json_encode($with));
 
-        return Cache::remember($cacheKey, now()->addMinutes(10), function () use ($id, $with) {
+        return Cache::remember($cacheKey, now()->addSeconds(10), function () use ($id, $with) {
             $query = Comment::query();
 
             if (!empty($with)) {
-                $query->with($with);
+                $query->withCount($with)
+                    ->with([$with => function ($query) {
+                    $query->limit(10);
+                }]);
             }
 
             return $query->find($id);

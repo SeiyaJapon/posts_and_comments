@@ -19,12 +19,12 @@ class GetCommentsQueryHandler
     {
         return new GetCommentsQueryResult(
             $this->commentRepository->getComments(
-                $query->filters,
-                $query->page,
-                $query->limit,
-                $query->sort,
-                $query->direction,
-                $query->with
+                $query->getFilters(),
+                $query->getPage(),
+                $query->getLimit(),
+                $query->getSort(),
+                $query->getDirection(),
+                $query->getWith()
             )
         );
     }

@@ -38,7 +38,7 @@ class CommentController extends Controller
         $limit = $request->get('limit', 10);
         $sort = $request->get('sort', 'id');
         $direction = $request->get('direction', 'asc');
-        $with = $request->query('with') ? explode(',', $request->query('with')) : [];
+        $with = $request->query('with');
 
         $comments = $this->getCommentsUsecase->execute(
             $filters,

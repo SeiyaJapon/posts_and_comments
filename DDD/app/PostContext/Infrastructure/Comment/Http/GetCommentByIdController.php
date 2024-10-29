@@ -21,7 +21,7 @@ class GetCommentByIdController
     public function __invoke(string $id, Request $request): JsonResponse
     {
         $result = $this->queryBus->ask(
-            new GetCommentByIdQuery($id)
+            new GetCommentByIdQuery($id, $request->get('with'))
         );
 
         return response()->json(

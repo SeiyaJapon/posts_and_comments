@@ -25,7 +25,7 @@ class GetCommentsController
         $limit = $request->get('limit', 10);
         $sort = $request->get('sort', 'id');
         $direction = $request->get('direction', 'asc');
-        $with = $request->get('with', []);
+        $with = $request->get('with', null);
 
         $result = $this->queryBus->ask(new GetCommentsQuery($filters, intval($page), intval($limit), $sort, $direction, $with));
 

@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Cache;
 
 class CommentRepository implements CommentRepositoryInterface
 {
-    public function getPaginated(array $filters, int $page, int $limit, string $sort, string $direction, array $with): array
+    public function getPaginated(array $filters, int $page, int $limit, string $sort, string $direction, string $with): array
     {
-        $cacheKey = 'comments_' . md5(json_encode($filters) . json_encode($with));
+        $cacheKey = 'comments_' . md5(json_encode($filters) . $with);
 
         return Cache::remember($cacheKey, now()->addMinutes(10), function () use ($filters, $with, $page, $limit, $sort, $direction) {
             $query = Comment::query()
@@ -21,7 +21,10 @@ class CommentRepository implements CommentRepositoryInterface
                             ->paginate($limit, ['*'], 'page', $page);
 
             if (!empty($with)) {
-                $query->with($with);
+                $query->withCount('comments')
+                    ->with([$with => function ($query) {
+                    $query->limit(10);
+                }]);
             }
 
             return [
@@ -39,7 +42,10 @@ class CommentRepository implements CommentRepositoryInterface
             $query = Comment::query();
 
             if (!empty($with)) {
-                $query->with($with);
+                $query->withCount('comments')
+                    ->with(['comments' => function ($query) {
+                    $query->limit(10);
+                }]);
             }
 
             return $query->find($id);

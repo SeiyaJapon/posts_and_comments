@@ -18,7 +18,7 @@ class GetCommentByIdQueryHandler
 
     public function handle(GetCommentByIdQuery $query): GetCommentByIdQueryResult
     {
-        $comment = $this->commentRepository->getCommentById(new CommentId($query->id()));
+        $comment = $this->commentRepository->getCommentById(new CommentId($query->getId()), $query->getWith());
 
         return new GetCommentByIdQueryResult($comment->toArray());
     }

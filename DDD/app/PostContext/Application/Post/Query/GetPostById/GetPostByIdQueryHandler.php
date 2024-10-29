@@ -20,7 +20,8 @@ class GetPostByIdQueryHandler
     public function handle(GetPostByIdQuery $query): GetPostByIdQueryResult
     {
         $post = $this->postRepository->getPostById(
-            new PostId($query->id())
+            new PostId($query->getId()),
+            $query->getWith()
         );
 
         if (empty($post)) {

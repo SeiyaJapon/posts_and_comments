@@ -13,7 +13,7 @@ class GetCommentsQuery implements QueryInterface
     public int $limit;
     public string $sort;
     public string $direction;
-    public array $with;
+    public ?string $with;
 
     public function __construct(
         array $filters = [],
@@ -21,7 +21,7 @@ class GetCommentsQuery implements QueryInterface
         int $limit = 10,
         string $sort = 'id',
         string $direction = 'asc',
-        array $with = []
+        ?string $with = null
     ) {
         $this->filters = $filters;
         $this->page = $page;
@@ -29,5 +29,35 @@ class GetCommentsQuery implements QueryInterface
         $this->sort = $sort;
         $this->direction = $direction;
         $this->with = $with;
+    }
+
+    public function getFilters(): array
+    {
+        return $this->filters;
+    }
+
+    public function getPage(): int
+    {
+        return $this->page;
+    }
+
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    public function getSort(): string
+    {
+        return $this->sort;
+    }
+
+    public function getDirection(): string
+    {
+        return $this->direction;
+    }
+
+    public function getWith(): ?string
+    {
+        return $this->with;
     }
 }

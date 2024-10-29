@@ -15,7 +15,7 @@ class GetCommentsUsecase
         $this->commentRepository = $commentRepository;
     }
 
-    public function execute(array $filters, int $page, int $limit, string $sort, string $direction, array $with): array
+    public function execute(array $filters, int $page, int $limit, string $sort, string $direction, string $with): array
     {
         return $this->commentRepository->getPaginated($filters, $page, $limit, $sort, $direction, $with);
     }
