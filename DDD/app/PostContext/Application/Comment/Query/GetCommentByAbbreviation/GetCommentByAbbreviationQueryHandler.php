@@ -4,7 +4,6 @@ declare (strict_types=1);
 
 namespace App\PostContext\Application\Comment\Query\GetCommentByAbbreviation;
 
-use App\PostContext\Domain\Comment\CommentId;
 use App\PostContext\Domain\Comment\CommentRepositoryInterface;
 
 class GetCommentByAbbreviationQueryHandler

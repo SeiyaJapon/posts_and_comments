@@ -9,7 +9,6 @@ use App\Models\Post\Post;
 use App\Usecases\Post\DeletePostUsecase;
 use App\Usecases\Post\GetPostByIdUsecase;
 use App\Usecases\Post\GetPostsUsecase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Tests\TestCase;
@@ -17,8 +16,6 @@ use Mockery;
 
 class PostControllerTest extends TestCase
 {
-    use RefreshDatabase;
-
     private $getPostsUsecase;
     private $getPostByIdUsecase;
     private $deletePostUsecase;
@@ -45,7 +42,8 @@ class PostControllerTest extends TestCase
             'page' => 1,
             'limit' => 10,
             'sort' => 'id',
-            'direction' => 'asc'
+            'direction' => 'asc',
+            'with' => null
         ]);
 
         $posts = [
@@ -56,7 +54,7 @@ class PostControllerTest extends TestCase
         $this->getPostsUsecase
             ->shouldReceive('execute')
             ->once()
-            ->with([], 1, 10, 'id', 'asc')
+            ->with([], 1, 10, 'id', 'asc', null)
             ->andReturn($posts);
 
         $response = $this->controller->index($request);

@@ -4,6 +4,7 @@ declare (strict_types=1);
 
 namespace Tests\Unit\Usecases\Comment;
 
+use App\Exceptions\AlredyAbbreviationExistsException;
 use PHPUnit\Framework\TestCase;
 use App\Usecases\Comment\CreateCommentUsecase;
 use App\Repositories\CommentRepository;
@@ -29,7 +30,11 @@ class CreateCommentUsecaseTest extends TestCase
 
     public function testExecuteSuccess()
     {
-        $data = ['post_id' => 1, 'content' => 'This is a comment'];
+        $data = [
+            'post_id' => 1,
+            'content' => 'This is a comment',
+            'abbreviation' => 'abc'
+        ];
         $comment = new Comment();
         $comment->post_id = $data['post_id'];
         $comment->content = $data['content'];
@@ -39,6 +44,12 @@ class CreateCommentUsecaseTest extends TestCase
             ->method('existsById')
             ->with($this->equalTo($data['post_id']))
             ->willReturn(true);
+
+        $this->commentRepositoryMock
+            ->expects($this->once())
+            ->method('existsByAbbreviation')
+            ->with($this->equalTo($data['abbreviation']))
+            ->willReturn(false);
 
         $this->commentRepositoryMock
             ->expects($this->once())
@@ -55,7 +66,11 @@ class CreateCommentUsecaseTest extends TestCase
 
     public function testExecutePostNotFound()
     {
-        $data = ['post_id' => 999, 'content' => 'This is a comment'];
+        $data = [
+            'post_id' => 1,
+            'content' => 'This is a comment',
+            'abbreviation' => 'abc'
+        ];
 
         $this->postRepositoryMock
             ->expects($this->once())
@@ -68,15 +83,51 @@ class CreateCommentUsecaseTest extends TestCase
         $this->createCommentUsecase->execute($data);
     }
 
-    public function testExecuteCreateCommentException()
+    public function testExecuteAbbreviationExists()
     {
-        $data = ['post_id' => 1, 'content' => 'This is a comment'];
+        $data = [
+            'post_id' => 1,
+            'content' => 'This is a comment',
+            'abbreviation' => 'abc'
+        ];
 
         $this->postRepositoryMock
             ->expects($this->once())
             ->method('existsById')
             ->with($this->equalTo($data['post_id']))
             ->willReturn(true);
+
+        $this->commentRepositoryMock
+            ->expects($this->once())
+            ->method('existsByAbbreviation')
+            ->with($this->equalTo($data['abbreviation']))
+            ->willReturn(true);
+
+        $this->expectException(AlredyAbbreviationExistsException::class);
+        $this->expectExceptionMessage('The abbreviation is already in use');
+
+        $this->createCommentUsecase->execute($data);
+    }
+
+    public function testExecuteCreateCommentException()
+    {
+        $data = [
+            'post_id' => 1,
+            'content' => 'This is a comment',
+            'abbreviation' => 'abc'
+        ];
+
+        $this->postRepositoryMock
+            ->expects($this->once())
+            ->method('existsById')
+            ->with($this->equalTo($data['post_id']))
+            ->willReturn(true);
+
+        $this->commentRepositoryMock
+            ->expects($this->once())
+            ->method('existsByAbbreviation')
+            ->with($this->equalTo($data['abbreviation']))
+            ->willReturn(false);
 
         $this->commentRepositoryMock
             ->expects($this->once())

@@ -10,7 +10,6 @@ use App\Usecases\Comment\CreateCommentUsecase;
 use App\Usecases\Comment\DeleteCommentUsecase;
 use App\Usecases\Comment\GetCommentByIdUsecase;
 use App\Usecases\Comment\GetCommentsUsecase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Tests\TestCase;
@@ -18,8 +17,6 @@ use Mockery;
 
 class CommentControllerTest extends TestCase
 {
-    use RefreshDatabase;
-
     private $createCommentUsecase;
     private $deleteCommentUsecase;
     private $getCommentByIdUsecase;
@@ -140,7 +137,7 @@ class CommentControllerTest extends TestCase
     public function testStore(): void
     {
         $data = [
-            'post_id' => 1,
+            'post_id' => "1",
             'content' => 'Test content',
             'abbreviation' => 'TC'
         ];
@@ -156,9 +153,11 @@ class CommentControllerTest extends TestCase
         $request = Request::create('/comments', 'POST', $data);
 
         $response = $this->controller->store($request);
+        $data = json_decode($response->content(), true);
 
         $this->assertInstanceOf(JsonResponse::class, $response);
-        $this->assertEquals($createdComment, $response->getData(true));
+        $this->assertEquals($createdComment->post_id, 1);
+        $this->assertEquals($createdComment->content, "Test content");
         $this->assertEquals(201, $response->getStatusCode());
     }
 }

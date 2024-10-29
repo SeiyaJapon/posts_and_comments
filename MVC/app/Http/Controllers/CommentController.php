@@ -10,7 +10,6 @@ use App\Usecases\Comment\GetCommentByIdUsecase;
 use App\Usecases\Comment\GetCommentsUsecase;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class CommentController extends Controller
 {
@@ -38,7 +37,7 @@ class CommentController extends Controller
         $limit = $request->get('limit', 10);
         $sort = $request->get('sort', 'id');
         $direction = $request->get('direction', 'asc');
-        $with = $request->query('with');
+        $with = $request->query('with', null);
 
         $comments = $this->getCommentsUsecase->execute(
             $filters,
@@ -57,12 +56,14 @@ class CommentController extends Controller
 
     public function show(int $id, Request $request): JsonResponse
     {
-        $with = $request->get('with', '');
+        $with = $request->get('with', null);
         $comment = $this->getCommentByIdUsecase->execute($id, $with);
+
         if (!$comment) {
             return response()->json(['error' => 'Comment not found'], 404);
         }
-        return response()->json($comment);
+
+        return response()->json(['result' => $comment, 'count' => 1]);
     }
 
     public function destroy(int $id): JsonResponse
@@ -86,6 +87,6 @@ class CommentController extends Controller
 
         $comment = $this->createCommentUsecase->execute($validatedData);
 
-        return response()->json($comment, 201);
+        return response()->json(['result' => $comment, 'count' => 1], 201);
     }
 }

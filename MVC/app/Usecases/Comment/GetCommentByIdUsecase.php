@@ -16,12 +16,8 @@ class GetCommentByIdUsecase
         $this->commentRepository = $commentRepository;
     }
 
-    public function execute(int $id, $with = []): ?Comment
+    public function execute(int $id, ?string $with = null): ?Comment
     {
-        if (!is_array($with)) {
-            $with = explode(',', $with);
-        }
-
         return $this->commentRepository->getCommentById($id, $with);
     }
 }

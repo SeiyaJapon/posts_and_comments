@@ -30,7 +30,7 @@ class GetCommentsUsecaseTest extends TestCase
         $limit = 10;
         $sort = 'id';
         $direction = 'asc';
-        $with = ['post'];
+        $with = 'post';
         $comments = [new Comment(), new Comment()];
 
         $this->commentRepositoryMock->expects($this->once())
@@ -52,7 +52,7 @@ class GetCommentsUsecaseTest extends TestCase
         $limit = 10;
         $sort = 'id';
         $direction = 'asc';
-        $with = [];
+        $with = null;
         $comments = [new Comment(), new Comment()];
 
         $this->commentRepositoryMock->expects($this->once())
@@ -74,7 +74,7 @@ class GetCommentsUsecaseTest extends TestCase
         $limit = 5;
         $sort = 'id';
         $direction = 'asc';
-        $with = ['post'];
+        $with = 'post';
         $comments = [new Comment(), new Comment()];
 
         $this->commentRepositoryMock->expects($this->once())

@@ -32,7 +32,7 @@ class GetCommentByIdUsecaseTest extends TestCase
 
         $this->commentRepositoryMock->expects($this->once())
             ->method('getCommentById')
-            ->with($this->equalTo($commentId), $this->equalTo([]))
+            ->with($this->equalTo($commentId), $this->isNull())
             ->willReturn($comment);
 
         $result = $this->getCommentByIdUsecase->execute($commentId);
@@ -45,7 +45,7 @@ class GetCommentByIdUsecaseTest extends TestCase
     public function testExecuteWithRelations()
     {
         $commentId = 1;
-        $with = ['post', 'author'];
+        $with = 'post';
         $comment = new Comment();
         $comment->id = $commentId;
         $comment->content = 'This is a comment';
@@ -68,7 +68,7 @@ class GetCommentByIdUsecaseTest extends TestCase
 
         $this->commentRepositoryMock->expects($this->once())
             ->method('getCommentById')
-            ->with($this->equalTo($commentId), $this->equalTo([]))
+            ->with($this->equalTo($commentId), $this->isNull())
             ->willReturn(null);
 
         $result = $this->getCommentByIdUsecase->execute($commentId);

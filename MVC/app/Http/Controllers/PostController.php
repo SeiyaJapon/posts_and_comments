@@ -28,13 +28,14 @@ class PostController extends Controller
 
     public function index(Request $request): JsonResponse
     {
-        $filters = $request->except(['page', 'limit', 'sort', 'direction']);
+        $filters = $request->except(['page', 'limit', 'sort', 'direction', 'with']);
         $page = $request->get('page', 1);
         $limit = $request->get('limit', 10);
         $sort = $request->get('sort', 'id');
         $direction = $request->get('direction', 'asc');
+        $with = $request->get('with', null);
 
-        $posts = $this->getPostsUsecase->execute($filters, intval($page), intval($limit), $sort, $direction);
+        $posts = $this->getPostsUsecase->execute($filters, intval($page), intval($limit), $sort, $direction, $with);
 
         return response()->json([
             'result' => $posts['result'],
@@ -50,7 +51,7 @@ class PostController extends Controller
             return response()->json(['error' => 'Post not found'], 404);
         }
 
-        return response()->json($post);
+        return response()->json(['result' => $post, 'count' => 1]);
     }
 
     public function destroy(int $id): JsonResponse
