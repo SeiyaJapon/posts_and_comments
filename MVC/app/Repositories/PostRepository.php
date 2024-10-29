@@ -35,8 +35,10 @@ class PostRepository implements PostRepositoryInterface
     {
         $cacheKey = 'post_' . $id;
 
-        return Cache::remember($cacheKey, now()->addMinutes(10), function () use ($id) {
-            return Post::with('comments')->find($id);
+        return Cache::remember($cacheKey, now()->addSeconds(10), function () use ($id) {
+            return Post::with(['comments' => function ($query) {
+                $query->paginate(100);
+            }])->find($id);
         });
     }
 

@@ -12,32 +12,39 @@ class Comment
     private CommentId $id;
     private PostId $postId;
     private Content $content;
-    private DateTimeImmutable $createdAt;
+    private string $abbreviation;
+    private \DateTime $createdAt;
 
-    public function __construct(CommentId $id, PostId $postId, Content $content, DateTimeImmutable $createdAt)
+    public function __construct(CommentId $id, PostId $postId, Content $content, string $abbreviation, \DateTime $createdAt)
     {
         $this->id = $id;
         $this->postId = $postId;
         $this->content = $content;
+        $this->abbreviation = $abbreviation;
         $this->createdAt = $createdAt;
     }
 
-    public function id(): CommentId
+    public function getId(): CommentId
     {
         return $this->id;
     }
 
-    public function postId(): PostId
+    public function getPostId(): PostId
     {
         return $this->postId;
     }
 
-    public function content(): Content
+    public function getContent(): Content
     {
         return $this->content;
     }
 
-    public function createdAt(): DateTimeImmutable
+    public function getAbbreviation(): string
+    {
+        return $this->abbreviation;
+    }
+
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }

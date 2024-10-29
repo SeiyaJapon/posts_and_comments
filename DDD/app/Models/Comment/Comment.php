@@ -3,13 +3,13 @@
 namespace App\Models\Comment;
 
 use App\Models\Post\Post;
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    use HasFactory, HasUlids;
+    use HasFactory, HasUuids;
 
     protected $fillable = ['id', 'post_id', 'content', 'abbreviation', 'created_at', 'updated_at'];
 

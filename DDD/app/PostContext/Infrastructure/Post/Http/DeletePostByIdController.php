@@ -6,6 +6,7 @@ namespace App\PostContext\Infrastructure\Post\Http;
 
 use App\PostContext\Infrastructure\Post\Service\DeletePostService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class DeletePostByIdController
 {
@@ -20,6 +21,8 @@ class DeletePostByIdController
     {
         $success = $this->deletePostService->execute($id);
 
-        return response()->json(['success' => $success]);
+        return $success ?
+            response()->json(['success' => $success]) :
+            response()->json(['error' => 'Post not found'], Response::HTTP_NOT_FOUND);
     }
 }

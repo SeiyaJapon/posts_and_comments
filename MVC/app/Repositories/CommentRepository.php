@@ -21,7 +21,7 @@ class CommentRepository implements CommentRepositoryInterface
                             ->paginate($limit, ['*'], 'page', $page);
 
             if (!empty($with)) {
-                $query->load($with);
+                $query->with($with);
             }
 
             return [
@@ -46,7 +46,7 @@ class CommentRepository implements CommentRepositoryInterface
         });
     }
 
-    public function deleteById($id): bool
+    public function deleteById(int $id): bool
     {
         $comment = Comment::find($id);
 

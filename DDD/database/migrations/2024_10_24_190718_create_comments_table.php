@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('post_id')->constrained('posts')->onDelete('cascade');
+            $table->index('post_id');
             $table->text('content');
             $table->string('abbreviation');
             $table->timestamps();

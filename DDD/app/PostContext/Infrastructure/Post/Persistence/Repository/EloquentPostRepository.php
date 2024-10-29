@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Cache;
 
 class EloquentPostRepository implements PostRepositoryInterface
 {
-    public function getPosts(array $filters = [], int $page = 1, int $limit = 10, string $sort = 'id', string $direction = 'asc', ?string $commentFilter = null): array
+    public function getPosts(array $filters = [], int $page = 1, int $limit = 10, string $sort = 'id', string $direction = 'asc', ?string $commentFilter = null, ?string $with = null): array
     {
         $cacheKey = 'posts_' . md5(json_encode($filters) . $page . $limit . $sort . $direction . $commentFilter);
 
@@ -19,6 +19,10 @@ class EloquentPostRepository implements PostRepositoryInterface
             $query = Post::query()
                          ->filter($filters)
                          ->withCommentFilter($commentFilter);
+
+            if (!empty($with)) {
+                $query->with($with);
+            }
 
             $count = $query->count();
 
@@ -35,10 +39,12 @@ class EloquentPostRepository implements PostRepositoryInterface
     public function getPostById(PostId $id): ?Post
     {
         $id = $id->value();
-        $cacheKey = 'post_' . $id;
+        $cacheKey = 'post_' . $id . '_comments_100_page_' . request('page', 1);
 
         return Cache::remember($cacheKey, now()->addSeconds(10), function () use ($id) {
-            return Post::with('comments')->find($id);
+            return Post::with(['comments' => function ($query) {
+                $query->limit(100);
+            }])->find($id);
         });
     }
 

@@ -19,12 +19,13 @@ class GetPostsQueryHandler
     {
         return new GetPostsQueryResult(
             $this->postRepository->getPosts(
-                $query->filters,
-                $query->page,
-                $query->limit,
-                $query->sort,
-                $query->direction,
-                $query->commentFilter
+                $query->getFilters(),
+                $query->getPage(),
+                $query->getLimit(),
+                $query->getSort(),
+                $query->getDirection(),
+                $query->getCommentFilter(),
+                $query->getWith()
             )
         );
     }

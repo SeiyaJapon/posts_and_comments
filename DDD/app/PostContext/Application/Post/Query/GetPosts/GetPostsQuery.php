@@ -21,7 +21,8 @@ class GetPostsQuery implements QueryInterface
         int $limit = 10,
         string $sort = 'id',
         string $direction = 'asc',
-        ?string $commentFilter = null
+        ?string $commentFilter = null,
+        ?string $with = null
     ) {
         $this->filters = $filters;
         $this->page = $page;
@@ -29,5 +30,41 @@ class GetPostsQuery implements QueryInterface
         $this->sort = $sort;
         $this->direction = $direction;
         $this->commentFilter = $commentFilter;
+        $this->with = $with;
+    }
+
+    public function getFilters(): array
+    {
+        return $this->filters;
+    }
+
+    public function getPage(): int
+    {
+        return $this->page;
+    }
+
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    public function getSort(): string
+    {
+        return $this->sort;
+    }
+
+    public function getDirection(): string
+    {
+        return $this->direction;
+    }
+
+    public function getCommentFilter(): ?string
+    {
+        return $this->commentFilter;
+    }
+
+    public function getWith(): ?string
+    {
+        return $this->with;
     }
 }

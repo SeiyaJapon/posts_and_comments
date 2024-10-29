@@ -24,7 +24,7 @@ class GetPostByIdController
         try {
             $post = $this->queryBus->ask(new GetPostByIdQuery($id));
 
-            return response()->json($post->result());
+            return response()->json(['result' => $post->result(), 'count' => 1]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], Response::HTTP_NOT_FOUND);
         }
