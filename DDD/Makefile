@@ -59,7 +59,7 @@ install-components:
 	docker compose exec $(DOCKER_BE) php artisan migrate --seed
 
 laravel-prepare:
-	docker compose exec $(DOCKER_BE) composer update
+	docker compose exec $(DOCKER_BE) composer install
 
 laravel-install: ## install laravel
 	docker compose exec $(DOCKER_BE) composer create-project laravel/laravel ./temp
